@@ -1,9 +1,8 @@
 from django.db import models
 
 
-class Autor(models.Model):
+class Author(models.Model):
     """Model definition for Autor."""
-    # TODO: Define fields here
     name = models.CharField(verbose_name='Nombre del Autor', max_length=100, null=False, blank=False)
     last_name = models.CharField(verbose_name='Apellido', max_length=100, null=False, blank=False)
     biography = models.TextField(verbose_name='Biografía', null=True, blank=True)
@@ -18,11 +17,18 @@ class Autor(models.Model):
     def __str__(self):
         """Unicode representation of Autor."""
         return f'{self.name} {self.last_name}'
+    
+    def clean(self):
+        if self.name:
+            self.name = self.name.capitalize().strip()
+        if self.last_name:
+            self.last_name = self.last_name.capitalize().strip()
+        if self.biography:
+            self.biography = self.biography.strip()
 
 
 class Category(models.Model):
     """Model definition for Category."""
-    # TODO: Define fields here
     name = models.CharField(verbose_name='Nombre de Categoría', max_length=100, null=False, blank=False, unique=True)
 
     class Meta:
@@ -35,17 +41,20 @@ class Category(models.Model):
     def __str__(self):
         """Unicode representation of Category."""
         return self.name
+    
+    def clean(self):
+        if self.name:
+            self.name = self.name.title().strip()
 
 
 class Book(models.Model):
     """Model definition for Book."""
-    # TODO: Define fields here
     title = models.CharField(verbose_name='Título del Libro', max_length=200, null=False, blank=False, unique=True)
     description = models.TextField(verbose_name='Descripción', null=False, blank=False)
     pub_year = models.DateField(verbose_name='Fecha de Publicación', null=False, blank=False)
     image = models.ImageField(verbose_name='Imagen', upload_to='image/', default='image/fondo.png')
     file = models.FileField(verbose_name='Libro', upload_to='books/', null=True, blank=True)
-    autor = models.ForeignKey('Autor', on_delete=models.RESTRICT, verbose_name='Autor')
+    author = models.ForeignKey('Author', on_delete=models.RESTRICT, verbose_name='Autor')
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, verbose_name='Categoría', null=True)
 
     class Meta:
@@ -58,3 +67,9 @@ class Book(models.Model):
     def __str__(self):
         """Unicode representation of Book."""
         return f'{self.title}'
+    
+    def clean(self):
+        if self.title:
+            self.title = self.title.title().strip()
+        if self.description:
+            self.description = self.description.strip()
