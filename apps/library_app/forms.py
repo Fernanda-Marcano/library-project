@@ -9,7 +9,7 @@ class AuthorForm(forms.ModelForm):
         """Meta definition for Authorform."""
 
         model = Author
-        fields = ('id','name', 'last_name', 'biography')
+        fields = ['id','name', 'last_name', 'biography']
         labels = {
             'name':'Nombre',
             'last_name':'Apellido',
@@ -42,7 +42,7 @@ class BookForm(forms.ModelForm):
         """Meta definition for Bookform."""
 
         model = Book
-        fields = ('title','description', 'pub_year', 'image', 'file', 'author', 'category')
+        fields = ['title','description', 'pub_year', 'image', 'file', 'author', 'category']
         labels = {
             'title':'Título', 
             'description':'Descripción', 

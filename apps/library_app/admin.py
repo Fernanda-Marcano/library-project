@@ -9,7 +9,7 @@ class AuthorAdmin(admin.ModelAdmin):
 class BookAdmin(admin.ModelAdmin):
     list_display = ['title', 'pub_year', 'author', 'category']
     list_filter = ('title', 'author', 'category', 'pub_year')
-    date_hierarchy = ['pub_year']
+    date_hierarchy = ('pub_year')
 
 admin.site.register(Author, AuthorAdmin)
 
