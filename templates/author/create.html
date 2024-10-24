@@ -1,0 +1,32 @@
+{% extends '../layouts/base.html' %}
+
+
+{% block title %}Crear Autor{% endblock title %}
+
+
+{% block content %}
+    <h1>hola author</h1>
+    <div class="card w-50">
+        <div class="card-body">
+            <h5 class="card-title mb-3 texto">{{ aut }}</h5>
+            <form class="row g-3" method="post">
+                {% csrf_token %}
+                <div class="col-md-6">
+                    <label class="form-label">{{ authors.name.label_tag }}</label>
+                    {{ authors.name }}
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">{{ authors.last_name.label_tag }}</label>
+                    {{ authors.last_name }}
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">{{ authors.biography.label_tag }}</label>
+                    {{ authors.biography }}
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-outline-success">{{ aut }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

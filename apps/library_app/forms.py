@@ -15,9 +15,11 @@ class AuthorForm(forms.ModelForm):
             'last_name':'Apellido',
             'biography':'Biografía'
         }
-        """ widgets = {
-            'name':forms.TextInput(attrs={})
-        } """
+        widgets = {
+            'name':forms.TextInput(attrs={'class':'form-control', 'autocomplete':'off'}), 
+            'last_name':forms.TextInput(attrs={'class':'form-control', 'autocomplete':'off'}),
+            'biography':forms.Textarea(attrs={'class':'form-control', 'autocomplete':'off'}),
+        }
 
 
 class CategoryForm(forms.ModelForm):

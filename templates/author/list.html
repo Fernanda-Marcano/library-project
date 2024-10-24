@@ -1,0 +1,60 @@
+{% extends '../layouts/base.html' %}
+{% load static %}
+
+{% block title %}{{list}}{% endblock title %}
+
+
+{% comment %}
+    {% block head %}
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.1.8/b-3.1.2/b-colvis-3.1.2/b-html5-3.1.2/r-3.0.3/datatables.min.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.1.8/b-3.1.2/b-colvis-3.1.2/b-html5-3.1.2/r-3.0.3/datatables.min.js"></script>
+    {% endblock head %}
+{% endcomment %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title mb-3 texto">{{ list }}</h5>
+        <table id="myTable" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for author in authors %}
+                    <tr>
+                    
+                        <th scope="row">{{author.id}}</th>
+                        <td>{{ author.name }}</td>
+                        <td>{{ author.last_name }}</td>
+                        <td>{{ author.biography }}</td>
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% comment %}
+    {% block javas %}
+        <script type="application/javascript">
+            $(document).ready( function () {
+                $('#myTable').DataTable();
+            } );
+        </script>
+    {% endblock javas %}
+{% endcomment %}
+
+
+
+{% endblock content %}
+
