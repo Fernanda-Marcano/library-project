@@ -1,0 +1,89 @@
+.col-md-12 textarea {
+    resize: none;
+    background-color: #e7e9ec50;
+}
+.col-md-12 textarea:focus {
+    box-shadow: none;
+    background-color: #e7e9ec50;
+}
+
+.texto {
+    text-align: center;
+    font-size: 1.8rem !important;
+    text-transform: uppercase;
+}
+
+.dataTables_wrapper .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dt-length {
+    float: left;
+}
+
+.dt-search {
+    text-align: right;
+}
+
+.dt-search input:focus {
+    outline: none;
+}
+
+.dt-buttons {
+    float: right;
+    margin-top: 7px;
+}
+.btn-excel {
+    background-color: #28a745 !important; /* Verde */
+    color: white !important;
+    border: none !important;
+}
+.btn-pdf {
+    background-color: #dc3545 !important; /* Rojo */
+    color: white !important;
+    border: none !important;
+}
+.btn-copy {
+    background-color: #007bff !important; /* Azul */
+    color: white !important;
+    border: none !important;
+}
+.btn-excel:hover, .btn-pdf:hover, .btn-copy:hover {
+    opacity: 0.8; /* Efecto hover */
+}
+
+.card {
+    background-color: #e7e9ec86 !important;
+}
+
+.table {
+    border-radius: 20px;
+}
+
+.table th {
+    background: transparent !important;
+    border: none;
+}
+
+
+.table td {
+    background: transparent !important;
+    border: none;
+}
+
+.table tr:hover {
+    background: #e7e9ec50 !important;
+    border: none;
+}
+
+.col-md-6 input {
+    background-color: #e7e9ec50;
+}
+
+.col-md-6 input:focus {
+    box-shadow: none;
+    background-color: #e7e9ec50;
+    border-color: 1px solid #ffffff;
+}
