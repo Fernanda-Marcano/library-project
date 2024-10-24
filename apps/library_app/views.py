@@ -39,3 +39,6 @@ class AuthorListView(ListView):
         context['list'] = 'Lista de Autores'
         context['authors'] = self.get_queryset()
         return context
+
+def prueba(request):
+    return render(request, 'book/create.html')
