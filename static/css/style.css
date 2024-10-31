@@ -9,7 +9,7 @@
 
 .texto {
     text-align: center;
-    font-size: 1.8rem !important;
+    font-size: 1.6rem !important;
     text-transform: uppercase;
 }
 
@@ -86,4 +86,16 @@
     box-shadow: none;
     background-color: #e7e9ec50;
     border-color: 1px solid #ffffff;
+}
+
+.list-cat {
+    list-style: none;
+    background-color: #e7e9ec50;
+    padding: 10px;
+    margin-top: 7px;
+    border-radius: 10px;
+}
+
+.btn-cat {
+    margin-top: 10px;
 }

@@ -4,6 +4,12 @@ from .models import Author, Category, Book
 
 class AuthorForm(forms.ModelForm):
     """Form definition for Author."""
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for form in self.visible_fields():
+            form.field.widget.attrs['class'] = 'form-control'
+            form.field.widget.attrs['autocomplete'] = 'off'
 
     class Meta:
         """Meta definition for Authorform."""
@@ -15,15 +21,20 @@ class AuthorForm(forms.ModelForm):
             'last_name':'Apellido',
             'biography':'Biografía'
         }
-        widgets = {
+        """ widgets = {
             'name':forms.TextInput(attrs={'class':'form-control', 'autocomplete':'off'}), 
             'last_name':forms.TextInput(attrs={'class':'form-control', 'autocomplete':'off'}),
             'biography':forms.Textarea(attrs={'class':'form-control', 'autocomplete':'off'}),
-        }
+        } """
 
 
 class CategoryForm(forms.ModelForm):
     """Form definition for Category."""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for form in self.visible_fields():
+            form.field.widget.attrs['class'] = 'form-control'
+            form.field.widget.attrs['autocomplete'] = 'off'
 
     class Meta:
         """Meta definition for Categoryform."""
@@ -37,8 +48,16 @@ class CategoryForm(forms.ModelForm):
 
 class BookForm(forms.ModelForm):
     """Form definition for Book."""
-    author = forms.ModelChoiceField(queryset=Author.objects.all(), empty_label=None, label='Autor', required=True, widget=forms.Select(attrs={'class':'form-control'}))
-    category = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label=None, label='Categoría', required=True, widget=forms.Select(attrs={'class':'form-control'}))
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for form in self.visible_fields():
+            form.field.widget.attrs['class'] = 'form-control'
+            form.field.widget.attrs['autocomplete'] = 'off'
+            if form.field.widget == 'FileInput':
+                form.field.widget.attrs['class'] = 'form-control-file'
+    
+    author = forms.ModelChoiceField(queryset=Author.objects.all(), empty_label=None, label='Autor', required=True)
+    category = forms.ModelChoiceField(queryset=Category.objects.all(), empty_label=None, label='Categoría', required=True)
 
     class Meta:
         """Meta definition for Bookform."""

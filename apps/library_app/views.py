@@ -40,5 +40,26 @@ class AuthorListView(ListView):
         context['authors'] = self.get_queryset()
         return context
 
-def prueba(request):
-    return render(request, 'book/create.html')
+
+class CategoryView(View):
+    model = Category
+    form_class = CategoryForm
+    template_name = 'category/categories.html'
+    
+    def get_queryset(self):
+        return self.model.objects.all()
+    
+    def get_context_data(self, **kwargs):
+        context = {}
+        context['categories'] = self.get_queryset()
+        context['form_category'] = self.form_class
+        return context
+    
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, self.get_context_data())
+    
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='list-category')
