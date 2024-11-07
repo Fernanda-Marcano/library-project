@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.views.generic import View, CreateView, DetailView, ListView
+from django.urls import reverse_lazy
+from django.views.generic import View, CreateView, DetailView, ListView, UpdateView
 
 from .models import Author, Category, Book
 from .forms import AuthorForm, CategoryForm, BookForm
@@ -63,3 +64,49 @@ class CategoryView(View):
         if form.is_valid():
             form.save()
             return redirect(to='list-category')
+
+
+class BookCreateView(CreateView):
+    model = Book
+    form_class = BookForm
+    template_name = "book/create.html"
+    
+    def get_context_data(self, **kwargs):
+        context = {}
+        context['title'] = 'Crear Libro'
+        context['c_book'] = self.form_class
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='list-book')
+
+
+class BookListView(ListView):
+    model = Book
+    template_name = "book/list.html"
+    
+    def get_queryset(self):
+        query = self.model.objects.all()
+        return query
+    
+    def get_context_data(self, **kwargs):
+        context = {}
+        context['books'] = self.get_queryset()
+        context['l_books'] = 'Lista de Libros'
+        return context
+
+
+class BookUpdateView(UpdateView):
+    model = Book
+    template_name = "book/create.html"
+    form_class = BookForm
+    success_url = reverse_lazy('list-book')
+    
+    def get_context_data(self, **kwargs):
+        context = {}
+        context['title'] = 'Actualizar Libro'
+        context['c_book'] = self.get_form()
+        return context

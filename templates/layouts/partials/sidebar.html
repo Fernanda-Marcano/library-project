@@ -34,7 +34,12 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="#">
+                    <a href="{% url 'create-book' %}">
+                        <i class="bi bi-circle"></i><span>Crear Libros</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'list-book' %}">
                         <i class="bi bi-circle"></i><span>Lista de Libros</span>
                     </a>
                 </li>

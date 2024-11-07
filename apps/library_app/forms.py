@@ -71,3 +71,7 @@ class BookForm(forms.ModelForm):
             'image':'Imagen', 
             'file':'Archivo'
         }
+        widgets = {
+            'description':forms.Textarea(attrs={'cols':30, 'rows':6}), 
+            'pub_year':forms.DateInput(format=('%Y-%m-%d'), attrs={'type':'date'}),
+        }

@@ -1,11 +1,45 @@
-{% extends '../layouts/base2.html' %}
+{% extends '../layouts/base.html' %}
 
+
+{% block title %}Crear Libro{% endblock title %}
 
 {% block content %}
     <section class="section dashboard">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title mb-3 texto">hola</h5>
+                <h5 class="card-title mb-3 texto">{{ title }}</h5>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">{{ c_book.title.label_tag }}</label>
+                            {{ c_book.title }}
+                            <label for="">{{ c_book.description.label_tag }}</label>
+                            {{ c_book.description }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="">{{ c_book.pub_year.label_tag }}</label>
+                            {{ c_book.pub_year }}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="">{{ c_book.image.label_tag }}</label>
+                                    {{ c_book.image }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">{{ c_book.file.label_tag }}</label>
+                                    {{ c_book.file}}
+                                </div>
+                            </div>
+                            <label for="">{{ c_book.author.label_tag }}</label>
+                            {{ c_book.author }}
+                            <label for="">{{ c_book.category.label_tag }}</label>
+                            {{ c_book.category }}
+                        </div>
+                        <div class="col-md-12 center-btn">
+                            <button type="submit" class="btn btn-primary btn-send"><i class="bi bi-send"></i> {{ title }}</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
